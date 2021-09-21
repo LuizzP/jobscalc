@@ -42,14 +42,36 @@
  * > npm run dev 
  */
 
+  /**
+   * Habilitar arquivos Static(Public) como image, scripts, styles, etc.
+   *  server.use(express.static("public"))
+   */
+
+/**
+ * Criando rotas
+ * - criar src/routes.js
+ */
+
+/**
+ * Configurando Template Engine EJS
+ * > npm i ejs
+ * 
+ * habilitando no sever.js
+ * - server.set('view engine', 'ejs')
+ */
+
 const express = require("express")
 const server = express()
+const routes = require("./routes")
 
+// Habilitar EJS- Template Engine
+server.set('view engine', 'ejs')
+
+// Habilitar arquivos Static(Public) como image, scripts, styles, etc.
 server.use(express.static("public"))
 
 
-server.get('/', (req, res) => {
-    return res.sendFile(__dirname + '/views/index.html')
-})
+//Routes
+server.use(routes)
 
 server.listen(3000, ()=> console.log('SERVER IS RUNNING'))
